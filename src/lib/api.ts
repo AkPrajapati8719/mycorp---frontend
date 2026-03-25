@@ -1,5 +1,5 @@
 // src/lib/api.ts
-const API_BASE_URL = 'http://localhost:8081/api';
+const API_BASE_URL = 'https://mycorp-backend-67ut.onrender.com/api';
 
 export const myCorpApi = {
   // 1. Fetch Career Roster
