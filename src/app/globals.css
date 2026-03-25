@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+:root {
+  --midnight-blue: #021533;
+  --pill-white: rgba(255, 255, 255, 0.05);
+}
+
+body {
+  background-color: var(--midnight-blue);
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Glassmorphism for floating elements */
+.glass-pill {
+  background: var(--pill-white);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* The circular background rings */
+.ring-glow {
+  border: 1px solid rgba(59, 130, 246, 0.1);
+  border-radius: 9999px;
+  position: absolute;
+}
