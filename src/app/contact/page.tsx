@@ -54,10 +54,10 @@ export default function ContactPage() {
       await myCorpApi.sendPublicInquiry(formData);
       
       setFormData({ name: '', email: '', subject: '', message: '' });
-      alert("Encrypted transmission logged in MyCorp Registry.");
+      alert("message sended successfully...");
     } catch (error) {
       console.error("Uplink Error:", error);
-      alert("Transmission failed. Mainframe connection interrupted.");
+      alert("message sending failed...");
     } finally {
       setIsSending(false);
     }
