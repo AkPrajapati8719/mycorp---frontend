@@ -1,6 +1,9 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# =============================================
+# MYCORP. FRONTEND - MASTER GITIGNORE
+# =============================================
 
-# dependencies
+# 1. DEPENDENCIES
+# ---------------------------------------------
 /node_modules
 /.pnp
 .pnp.*
@@ -10,32 +13,53 @@
 !.yarn/releases
 !.yarn/versions
 
-# testing
-/coverage
-
-# next.js
+# 2. NEXT.JS SPECIFIC
+# ---------------------------------------------
 /.next/
 /out/
-
-# production
 /build
+/dist
+/chunks
+*.tsbuildinfo
+next-env.d.ts
 
-# misc
-.DS_Store
+# 3. ENVIRONMENT SECRETS (CRITICAL)
+# ---------------------------------------------
+# We ignore all .env files to protect your API keys
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 *.pem
 
-# debug
+# 4. TESTING & COVERAGE
+# ---------------------------------------------
+/coverage
+/__tests__/*.log
+
+# 5. OS & IDE JUNK
+# ---------------------------------------------
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# 6. LOGS & DEBUGGING
+# ---------------------------------------------
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+logs
+*.log
 
-# env files (can opt-in for committing if needed)
-.env*
-
-# vercel
+# 7. VERCEL & DEPLOYMENT
+# ---------------------------------------------
 .vercel
-
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+.turbo
