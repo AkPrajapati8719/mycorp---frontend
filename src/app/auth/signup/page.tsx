@@ -18,7 +18,7 @@ export default function SignupPage() {
     setErrorMessage(null);
 
     try {
-      const res = await fetch('http://localhost:8081/api/auth/signup', {
+      const res = await fetch('https://mycorp-backend-67ut.onrender.com/api/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
