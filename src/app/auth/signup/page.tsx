@@ -13,29 +13,36 @@ export default function SignupPage() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setErrorMessage(null);
+      e.preventDefault();
+      setIsLoading(true);
+      setErrorMessage(null);
 
-    try {
-      const res = await fetch('https://mycorp-backend-67ut.onrender.com/api/auth/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
+      // 🌐 Automatically uses Vercel's variable, falls back to Render if missing
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://mycorp-backend-67ut.onrender.com/api';
 
-      if (res.ok) {
-        // 🚀 SUCCESS: Move to login
-        router.push('/auth/login?message=Account Created! Please Login.');
-      } else {
-        const data = await res.json();
-        setErrorMessage(data.message || 'Identity initialization failed.');
+      try {
+        // ✅ Dynamic URL: No more hardcoded links!
+        const res = await fetch(`${API_BASE_URL}/auth/signup`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
+        });
+
+        if (res.ok) {
+          // 🚀 SUCCESS: Move to login
+          router.push('/auth/login?message=Account Created! Please Login.');
+        } else {
+          // Try to parse error, fallback to generic message if JSON is broken
+          const data = await res.json().catch(() => ({}));
+          setErrorMessage(data.message || 'Identity initialization failed. User might already exist.');
+        }
+      } catch (err) {
+        // 🕵️ Updated error message to be more professional for the cloud
+        setErrorMessage('Mainframe Connection Error: The security server is currently unreachable.');
+        console.error("Signup Error:", err);
+      } finally {
+        setIsLoading(false);
       }
-    } catch (err) {
-      setErrorMessage('Mainframe Connection Error: Ensure backend is active on Port 8081.');
-    } finally {
-      setIsLoading(false);
-    }
   };
 
   return (
