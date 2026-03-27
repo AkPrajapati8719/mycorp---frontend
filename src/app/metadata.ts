@@ -27,7 +27,7 @@ export const constructMetadata = ({
       creator: "@mycorp_official",
     },
     icons,
-    metadataBase: new URL('https://mycorp-backend-67ut.onrender.com'), // Update this to your Vercel URL later
+    // metadataBase: new URL('https://mycorp-backend-67ut.onrender.com'), // Update this to your Vercel URL later
   };
 };
 
