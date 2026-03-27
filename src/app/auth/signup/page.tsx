@@ -18,7 +18,9 @@ export default function SignupPage() {
       setErrorMessage(null);
 
       // 🌐 Automatically uses Vercel's variable, falls back to Render if missing
-      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://mycorp-backend-67ut.onrender.com/api';
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://mycorp-backend-67ut.onrender.com/api'; 
+      // const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8081/api';
+
 
       try {
         // ✅ Dynamic URL: No more hardcoded links!
