@@ -68,7 +68,7 @@ export default function Footer() {
 
         {/* Copyright Bar */}
         <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-[10px] font-black tracking-[0.4em] text-slate-600">
-          <p>© 2026 MYCORP GROUP HOLDINGS. DEVELOPED BY ABHISHEK PRAJAPATI.</p>
+          <p>© 2026 MYCORP GROUP HOLDINGS. DEVELOPED BY TECH EVENDRI.</p>
           <div className="flex space-x-10 mt-6 md:mt-0">
             <span className="cursor-pointer hover:text-white transition">PRIVACY</span>
             <span className="cursor-pointer hover:text-white transition">TERMS</span>
