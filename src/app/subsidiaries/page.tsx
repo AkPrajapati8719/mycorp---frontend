@@ -145,7 +145,7 @@ export default function SubsidiaryRegistry() {
       {/* 🆕 SUBSIDIARY DOSSIER MODAL */}
       <AnimatePresence>
         {selectedSub && (
-        <div className="fixed inset-0 z-[200] flex items-start justify-center p-4 md:p-6 pt-24 md:pt-32 overflow-y-auto">
+        <div className="fixed inset-0 z-[200] flex items-start justify-center p-4 md:p-6 pt-28 md:pt-32 overflow-y-auto">
             <motion.div 
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               onClick={() => setSelectedSub(null)}
