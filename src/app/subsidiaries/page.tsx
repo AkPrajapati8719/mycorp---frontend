@@ -145,7 +145,7 @@ export default function SubsidiaryRegistry() {
       {/* 🆕 SUBSIDIARY DOSSIER MODAL */}
       <AnimatePresence>
         {selectedSub && (
-          <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 md:p-6">
+          <div className="fixed inset-0 z-[200] flex items-center justify-center p-20 md:p-6">
             <motion.div 
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               onClick={() => setSelectedSub(null)}
@@ -221,7 +221,7 @@ export default function SubsidiaryRegistry() {
       </AnimatePresence>
 
       {/* 🚀 TIER 3: SYSTEM CAPABILITIES CARDS */}
-      <section className="max-w-7xl mx-auto px-18 pb-20">
+      <section className="max-w-7xl mx-auto px-6 pb-20">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
             { title: "Quantum Routing", desc: "AI-driven subsidiary resource allocation.", icon: <Cpu size={22}/>, color: "blue" },
