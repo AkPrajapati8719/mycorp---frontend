@@ -212,7 +212,7 @@ export default function SubsidiaryRegistry() {
               {/* Modal Footer */}
               <div className="bg-slate-50 border-t border-slate-100 px-10 py-6 flex justify-end gap-4">
                 <button onClick={() => window.open(`http://${selectedSub.website}`, '_blank')} className="px-10 py-4 rounded-full bg-slate-900 text-white font-black uppercase tracking-widest text-[10px] hover:bg-blue-600 transition-all flex items-center gap-2 shadow-xl shadow-slate-200">
-                  Visit Mainframe <ArrowUpRight size={14}/>
+                  Visit Us <ArrowUpRight size={14}/>
                 </button>
               </div>
             </motion.div>
