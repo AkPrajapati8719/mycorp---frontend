@@ -41,8 +41,8 @@ const GROUP_META: Record<string, any> = {
   'tata-group': { 
     title: "Neural Infrastructure", 
     accentBg: "bg-blue-600", 
-    glowColor: "rgba(59, 130, 246, 0.5)", 
-    accentText: "text-blue-400", 
+    glowColor: "rgba(37, 99, 235, 0.12)", 
+    accentText: "text-blue-600", 
     icon: <Cpu size={24} />, 
     stats: [{ label: "Uptime", val: "99.9%", icon: <Zap size={16}/> }, { label: "Nodes", val: "12.4k", icon: <Globe2 size={16}/> }, { label: "Trust", val: "Lvl 9", icon: <ShieldCheck size={16}/> }], 
     tags: ["Neural-Sync", "Quantum", "Edge"], 
@@ -53,8 +53,8 @@ const GROUP_META: Record<string, any> = {
   'reliance-industries': { 
     title: "Eco-Energy Core", 
     accentBg: "bg-cyan-600", 
-    glowColor: "rgba(6, 182, 212, 0.5)", 
-    accentText: "text-cyan-400", 
+    glowColor: "rgba(6, 182, 212, 0.12)", 
+    accentText: "text-cyan-600", 
     icon: <Box size={24} />, 
     stats: [{ label: "Market", val: "Top 1", icon: <BarChart3 size={16}/> }, { label: "Jio Hubs", val: "8.2k", icon: <Network size={16}/> }, { label: "Status", val: "Stable", icon: <ShieldCheck size={16}/> }], 
     tags: ["5G-Mesh", "Bio-Fuel", "Scale"], 
@@ -65,8 +65,8 @@ const GROUP_META: Record<string, any> = {
   'adani-group': { 
     title: "Sovereign Foundations", 
     accentBg: "bg-amber-600", 
-    glowColor: "rgba(245, 158, 11, 0.5)", 
-    accentText: "text-amber-400", 
+    glowColor: "rgba(245, 158, 11, 0.12)", 
+    accentText: "text-amber-600", 
     icon: <Building2 size={24} />, 
     stats: [{ label: "Cargo", val: "450M", icon: <Ship size={16}/> }, { label: "Units", val: "18.2k", icon: <Layers size={16}/> }, { label: "Growth", val: "+18%", icon: <BarChart3 size={16}/> }], 
     tags: ["Infrastructure", "Net-Zero", "Cargo"], 
@@ -78,18 +78,14 @@ const GROUP_META: Record<string, any> = {
 
 export default function SectorPage() {
   const { slug } = useParams();
-  
-  // 🛡️ CRITICAL FIX: Ensure valid key or fallback to prevent .map() crash
   const groupKey = (slug as string) || 'tata-group';
   const data = GROUP_META[groupKey] || GROUP_META['tata-group'];
   const entities = SUBSIDIARY_MAINFRAME[groupKey] || SUBSIDIARY_MAINFRAME['tata-group'];
-  
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     AOS.init({ duration: 1000, once: false, easing: 'ease-out-cubic' });
     const handleMouseMove = (e: MouseEvent) => {
-      // 🛡️ Matches both .glow-card and .glow-card-tier3
       const cards = containerRef.current?.querySelectorAll('[class*="glow-card"]');
       cards?.forEach((card: any) => {
         const rect = card.getBoundingClientRect();
@@ -102,7 +98,7 @@ export default function SectorPage() {
   }, []);
 
   return (
-    <main ref={containerRef} className="min-h-screen bg-[#021533] text-white pt-32 pb-20 overflow-x-hidden relative selection:bg-white/10">
+    <main ref={containerRef} className="min-h-screen bg-[#F8FAFC] text-slate-900 pt-32 pb-20 overflow-x-hidden relative selection:bg-blue-100">
       <div className={`absolute top-0 right-0 w-full h-full ${data.accentBg}/5 blur-[150px] rounded-full pointer-events-none z-0`} />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -111,73 +107,73 @@ export default function SectorPage() {
         <section className="grid lg:grid-cols-2 gap-12 items-center mb-24">
           <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
             <div className="flex items-center space-x-3 mb-6">
-              <div className={`${data.accentText} p-2 bg-white/5 rounded-lg border border-white/10 shadow-lg`}>{data.icon}</div>
+              <div className={`${data.accentText} p-2 bg-white shadow-sm rounded-lg border border-slate-200`}>{data.icon}</div>
               <span className="text-slate-500 font-bold tracking-[0.4em] uppercase text-[9px]">Cyber-Registry Protocol</span>
             </div>
             <h1 className="text-4xl md:text-7xl font-black tracking-tight uppercase italic leading-[0.9] mb-6">
               {groupKey.replace('-', ' ')} <br/><span className={data.accentText}>{data.title.split(' ')[0]}</span>
             </h1>
-            <p className="text-slate-400 text-sm md:text-base leading-relaxed max-w-lg mb-10 border-l border-white/10 pl-6 italic">
+            <p className="text-slate-500 text-sm md:text-base leading-relaxed max-w-lg mb-10 border-l border-slate-200 pl-6 italic">
               "Starting our journey in {data.started}, we operate with the vision of {data.vision}."
             </p>
             <Link href="/auth/register">
-              <motion.button whileHover={{ scale: 1.05 }} className={`${data.accentBg} text-white px-8 py-4 rounded-full font-black uppercase tracking-widest text-[10px] flex items-center gap-3 shadow-2xl`}>
+              <motion.button whileHover={{ scale: 1.05 }} className={`bg-slate-900 text-white px-8 py-4 rounded-full font-black uppercase tracking-widest text-[10px] flex items-center gap-3 shadow-xl`}>
                 Register subsidiary <ArrowUpRight size={14} />
               </motion.button>
             </Link>
           </motion.div>
 
-          <div className="relative group h-[450px] rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl">
+          <div className="relative group h-[450px] rounded-[3rem] overflow-hidden border border-slate-200 bg-white shadow-xl">
             <div className="absolute inset-0 z-50 pointer-events-none">
               <motion.div 
                 className="absolute inset-0 rounded-[3rem] border-[2px] border-transparent"
                 style={{
                   maskImage: `conic-gradient(from 0deg, black 0%, black 15%, transparent 30%, transparent 100%)`,
                   WebkitMaskImage: `conic-gradient(from 0deg, black 0%, black 15%, transparent 30%, transparent 100%)`,
-                  borderImage: `conic-gradient(from 0deg, transparent, ${data.glowColor}, transparent) 1`,
+                  borderImage: `conic-gradient(from 0deg, transparent, #94a3b8, #3b82f6, transparent) 1`,
                 }}
                 animate={{ rotate: 360 }}
                 transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
               />
             </div>
-            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105" alt="Group Hero" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#021533] to-transparent opacity-80" />
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200" className="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105" alt="Group Hero" />
+            <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent opacity-60" />
           </div>
         </section>
 
-        {/* TIER 1.5: FAMILIAR EXPLANATION (Paragraph Tier) */}
+        {/* TIER 1.5: FAMILIAR EXPLANATION */}
         <section className="mb-32" data-aos="fade-up">
-           <div className="relative p-10 md:p-16 bg-white/[0.02] border border-white/5 rounded-[3.5rem] overflow-hidden shadow-inner">
-              <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+           <div className="relative p-10 md:p-16 bg-white border border-slate-200 rounded-[3.5rem] overflow-hidden shadow-sm">
+              <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
               <div className="grid md:grid-cols-4 gap-12 items-start relative z-10">
                  <div className="md:col-span-3">
                     <div className="flex items-center gap-3 mb-8">
                        <Quote size={20} className={data.accentText} />
-                       <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-500 italic">Institutional Dossier // Active Archive</span>
+                       <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 italic">Institutional Dossier // Active Archive</span>
                     </div>
-                    <p className="text-xl md:text-3xl font-bold italic leading-tight text-slate-100 mb-8">
+                    <p className="text-xl md:text-3xl font-bold italic leading-tight text-slate-800 mb-8">
                        {data.longDesc}
                     </p>
                     <div className="flex gap-4">
-                       <span className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[10px] font-black uppercase tracking-widest text-slate-400">Legacy: Since {data.started}</span>
-                       <span className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[10px] font-black uppercase tracking-widest text-slate-400">Philosophy: {data.vision}</span>
+                       <span className="px-4 py-2 rounded-full bg-slate-50 border border-slate-200 text-[10px] font-black uppercase tracking-widest text-slate-500">Legacy: Since {data.started}</span>
+                       <span className="px-4 py-2 rounded-full bg-slate-50 border border-slate-200 text-[10px] font-black uppercase tracking-widest text-slate-500">Philosophy: {data.vision}</span>
                     </div>
                  </div>
                  <div className="space-y-6">
-                    <div className="p-8 bg-white/5 border border-white/10 rounded-[2.5rem] text-center">
+                    <div className="p-8 bg-slate-50 border border-slate-100 rounded-[2.5rem] text-center">
                        <History size={24} className={data.accentText + " mx-auto mb-4"} />
-                       <h5 className="text-[9px] font-black uppercase tracking-widest text-slate-500">Established Foundation</h5>
-                       <p className="text-2xl font-black italic text-white mt-1">{data.started}</p>
+                       <h5 className="text-[9px] font-black uppercase tracking-widest text-slate-400">Established Foundation</h5>
+                       <p className="text-2xl font-black italic text-slate-900 mt-1">{data.started}</p>
                     </div>
                  </div>
               </div>
-              <motion.div animate={{ top: ['-10%', '110%'] }} transition={{ duration: 5, repeat: Infinity, ease: "linear" }} className="absolute left-0 w-full h-[15%] bg-gradient-to-b from-transparent via-white/[0.04] to-transparent pointer-events-none" />
+              <motion.div animate={{ top: ['-10%', '110%'] }} transition={{ duration: 5, repeat: Infinity, ease: "linear" }} className="absolute left-0 w-full h-[15%] bg-gradient-to-b from-transparent via-blue-500/5 to-transparent pointer-events-none" />
            </div>
         </section>
 
         {/* TIER 2: GROUP HOLDINGS */}
         <section className="mb-32">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 border-b border-white/5 pb-8" data-aos="fade-up">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 border-b border-slate-200 pb-8" data-aos="fade-up">
             <div>
               <h2 className="text-3xl md:text-5xl font-black italic uppercase tracking-tighter leading-none">
                 Sub-Sector <span className={data.accentText}>Companies</span>
@@ -195,7 +191,7 @@ export default function SectorPage() {
                 transition={{ delay: i * 0.1 }}
                 whileHover={{ y: -8 }}
                 onClick={() => window.open(sub.url, '_blank')}
-                className="glow-card group relative bg-white/[0.02] border border-white/10 rounded-[2rem] p-6 flex flex-col justify-between min-h-[420px] overflow-hidden cursor-pointer transition-all duration-500 hover:bg-white/[0.04] shadow-xl hover:border-white/20"
+                className="glow-card group relative bg-white border border-slate-200 rounded-[2rem] p-6 flex flex-col justify-between min-h-[420px] overflow-hidden cursor-pointer transition-all duration-500 hover:shadow-2xl"
               >
                 <div className="absolute inset-0 z-50 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                   <motion.div 
@@ -203,7 +199,7 @@ export default function SectorPage() {
                     style={{
                       maskImage: `conic-gradient(from 0deg, black 0%, black 15%, transparent 30%)`,
                       WebkitMaskImage: `conic-gradient(from 0deg, black 0%, black 15%, transparent 30%)`,
-                      borderImage: `conic-gradient(from 0deg, transparent, ${data.glowColor}, transparent) 1`,
+                      borderImage: `conic-gradient(from 0deg, transparent, #94a3b8, #3b82f6, transparent) 1`,
                     }}
                     animate={{ rotate: 360 }}
                     transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
@@ -211,41 +207,41 @@ export default function SectorPage() {
                 </div>
 
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0"
-                    style={{ background: `radial-gradient(350px circle at var(--mouse-x) var(--mouse-y), ${data.glowColor.replace('0.5', '0.12')}, transparent 80%)` }} 
+                    style={{ background: `radial-gradient(350px circle at var(--mouse-x) var(--mouse-y), ${data.glowColor}, transparent 80%)` }} 
                 />
 
                 <div className="relative z-10">
                     <div className="flex justify-between items-start mb-6">
-                       <div className={`${data.accentText} p-3 bg-white/5 rounded-xl border border-white/5 group-hover:scale-110 transition-transform`}>{sub.icon}</div>
+                       <div className={`${data.accentText} p-3 bg-slate-50 shadow-sm rounded-xl border border-slate-100 group-hover:scale-110 transition-transform`}>{sub.icon}</div>
                        <div className="text-right">
-                          <span className="text-[8px] font-black uppercase text-slate-500 tracking-widest block">{sub.group}</span>
-                          <span className="text-[7px] font-bold text-white/40 uppercase tracking-widest block">{sub.industry}</span>
+                          <span className="text-[8px] font-black uppercase text-slate-400 tracking-widest block">{sub.group}</span>
+                          <span className="text-[7px] font-bold text-slate-400 uppercase tracking-widest block">{sub.industry}</span>
                        </div>
                     </div>
-                    <h4 className="text-lg font-black italic uppercase leading-tight tracking-tighter text-white mb-4 group-hover:text-cyan-400 transition-colors">{sub.name}</h4>
-                    <p className="text-[10px] text-slate-400 italic leading-relaxed mb-6 border-l border-white/10 pl-3">
+                    <h4 className="text-lg font-black italic uppercase leading-tight tracking-tighter text-slate-900 mb-4 group-hover:text-blue-600 transition-colors">{sub.name}</h4>
+                    <p className="text-[10px] text-slate-500 italic leading-relaxed mb-6 border-l border-slate-100 pl-3">
                        {sub.desc}
                     </p>
                     <div className="grid grid-cols-2 gap-3 mb-6 mt-2">
                         <div className="flex flex-col gap-1">
-                            <span className="text-[7px] text-slate-500 uppercase font-black tracking-widest">Net Worth</span>
-                            <span className="text-xs font-black italic text-white leading-none">{sub.val}</span>
+                            <span className="text-[7px] text-slate-400 uppercase font-black tracking-widest">Net Worth</span>
+                            <span className="text-xs font-black italic text-slate-900 leading-none">{sub.val}</span>
                         </div>
                         <div className="flex flex-col gap-1">
-                            <span className="text-[7px] text-slate-500 uppercase font-black tracking-widest">Global Rank</span>
+                            <span className="text-[7px] text-slate-400 uppercase font-black tracking-widest">Global Rank</span>
                             <div className="flex items-center gap-1">
-                               <Star size={8} className="text-amber-400 fill-amber-400" />
-                               <span className="text-xs font-black italic text-white leading-none">{sub.pop}</span>
+                               <Star size={8} className="text-amber-500 fill-amber-500" />
+                               <span className="text-xs font-black italic text-slate-900 leading-none">{sub.pop}</span>
                             </div>
                         </div>
                     </div>
-                    <div className="mt-auto pt-4 border-t border-white/5 flex items-center justify-between">
+                    <div className="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between">
                        <div className="flex items-center gap-1.5">
                           <MapPin size={10} className={data.accentText} />
                           <span className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">{sub.loc}</span>
                        </div>
-                       <div className="p-1.5 bg-white/5 rounded-lg group-hover:bg-white/10 transition-colors">
-                          <ArrowRight size={12} className={data.accentText} />
+                       <div className="p-1.5 bg-slate-50 rounded-lg group-hover:bg-slate-900 group-hover:text-white transition-all shadow-sm">
+                          <ArrowRight size={12} />
                        </div>
                     </div>
                 </div>
@@ -260,10 +256,10 @@ export default function SectorPage() {
             <div key={i} data-aos="zoom-in" data-aos-delay={i * 100}>
               <motion.div 
                 whileHover={{ y: -10, transition: { duration: 0.3 } }}
-                className="glow-card-tier3 bg-white/[0.01] border border-white/5 p-10 rounded-[3rem] text-center relative overflow-hidden group shadow-2xl transition-all duration-500 hover:bg-white/[0.03]"
+                className="glow-card-tier3 bg-white border border-slate-200 p-10 rounded-[3rem] text-center relative overflow-hidden group shadow-sm transition-all duration-500 hover:shadow-2xl"
               >
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-0"
-                  style={{ background: `radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), ${data.glowColor.replace('0.5', '0.15')}, transparent 80%)` }}
+                  style={{ background: `radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), ${data.glowColor}, transparent 80%)` }}
                 />
                 <div className="absolute inset-0 z-50 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                   <motion.div 
@@ -271,49 +267,48 @@ export default function SectorPage() {
                     style={{
                       maskImage: `conic-gradient(from 0deg, black 0%, black 15%, transparent 30%)`,
                       WebkitMaskImage: `conic-gradient(from 0deg, black 0%, black 15%, transparent 30%)`,
-                      borderImage: `conic-gradient(from 0deg, transparent, ${data.glowColor}, transparent) 1`,
+                      borderImage: `conic-gradient(from 0deg, transparent, #94a3b8, #3b82f6, transparent) 1`,
                     }}
                     animate={{ rotate: -360 }}
                     transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
                   />
                 </div>
-                {/* Fixed Scanline Animation class via global.css required */}
-                <div className="absolute inset-0 w-full h-[2px] bg-white/[0.02] top-[-100%] group-hover:animate-scanline pointer-events-none z-10" />
+                <div className="absolute inset-0 w-full h-[2px] bg-blue-500/5 top-[-100%] group-hover:animate-scanline pointer-events-none z-10" />
                 <div className="relative z-20">
-                  <motion.div whileHover={{ scale: 1.2, rotate: 5 }} className={`${data.accentText} mb-6 flex justify-center drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]`}>
+                  <motion.div whileHover={{ scale: 1.2, rotate: 5 }} className={`${data.accentText} mb-6 flex justify-center drop-shadow-sm`}>
                     {stat.icon}
                   </motion.div>
-                  <motion.h4 initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.2 }} className="text-4xl md:text-5xl font-black italic tracking-tighter mb-2 group-hover:text-white transition-colors">
+                  <motion.h4 initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.2 }} className="text-4xl md:text-5xl font-black italic tracking-tighter mb-2 text-slate-900 group-hover:text-blue-600 transition-colors">
                     {stat.val}
                   </motion.h4>
-                  <p className="text-slate-500 text-[9px] font-black uppercase tracking-[0.4em] group-hover:tracking-[0.5em] transition-all duration-500">
+                  <p className="text-slate-400 text-[9px] font-black uppercase tracking-[0.4em] group-hover:tracking-[0.5em] transition-all duration-500">
                     {stat.label}
                   </p>
                 </div>
-                <div className="absolute top-4 right-4 w-2 h-2 border-t border-r border-white/20 rounded-tr-sm group-hover:border-white/60 transition-colors" />
-                <div className="absolute bottom-4 left-4 w-2 h-2 border-b border-l border-white/20 rounded-bl-sm group-hover:border-white/60 transition-colors" />
+                <div className="absolute top-4 right-4 w-2 h-2 border-t border-r border-slate-200 rounded-tr-sm group-hover:border-blue-300 transition-colors" />
+                <div className="absolute bottom-4 left-4 w-2 h-2 border-b border-l border-slate-200 rounded-bl-sm group-hover:border-blue-300 transition-colors" />
               </motion.div>
             </div>
           ))}
         </section>
         
         {/* TIER 4: INDUSTRIAL GOVERNANCE */}
-        <section className="mt-20 border-t border-white/10 pt-20" data-aos="fade-up">
+        <section className="mt-20 border-t border-slate-200 pt-20" data-aos="fade-up">
            <div className="flex flex-col md:flex-row gap-12 items-center">
               <div className="flex-1">
-                 <div className="inline-flex items-center px-4 py-2 bg-white/5 border border-white/10 rounded-full mb-6">
+                 <div className="inline-flex items-center px-4 py-2 bg-slate-50 border border-slate-200 rounded-full mb-6">
                     <ShieldCheck size={14} className={data.accentText + " animate-pulse mr-2"} />
-                    <span className="text-[8px] font-black uppercase tracking-widest text-slate-300">Level 9 Security Protocol Active</span>
+                    <span className="text-[8px] font-black uppercase tracking-widest text-slate-500">Level 9 Security Protocol Active</span>
                  </div>
-                 <h3 className="text-3xl font-black italic uppercase tracking-tighter mb-6">Autonomous <br/> <span className="text-white/20">Governance Core.</span></h3>
-                 <p className="text-slate-400 text-sm leading-relaxed max-w-md">
+                 <h3 className="text-3xl font-black italic uppercase tracking-tighter mb-6 text-slate-900">Autonomous <br/> <span className="text-slate-400">Governance Core.</span></h3>
+                 <p className="text-slate-500 text-sm leading-relaxed max-w-md font-medium">
                     Each subsidiary operates within the MyCorp decentralized legal framework, ensuring regulatory compliance across multiple jurisdictions via real-time biometric auditing.
                  </p>
               </div>
               <div className="flex-1 grid grid-cols-2 gap-4">
                  {[1,2,3,4].map((item) => (
-                    <div key={item} className="h-24 bg-white/[0.02] border border-white/5 rounded-2xl flex items-center justify-center group hover:bg-white/5 transition-all">
-                       <div className="w-12 h-1 bg-white/10 relative overflow-hidden">
+                    <div key={item} className="h-24 bg-white border border-slate-100 rounded-2xl flex items-center justify-center group hover:bg-slate-50 transition-all shadow-sm">
+                       <div className="w-12 h-1 bg-slate-100 relative overflow-hidden rounded-full">
                           <motion.div animate={{ left: ['-100%', '100%'] }} transition={{ duration: 2, repeat: Infinity, delay: item * 0.5 }} className={`absolute top-0 h-full w-1/2 ${data.accentBg}`} />
                        </div>
                     </div>

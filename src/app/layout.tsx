@@ -11,27 +11,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="bg-[#021533] text-white antialiased selection:bg-blue-500/30 overflow-x-hidden">
+    <html lang="en" className="scroll-smooth">
+      {/* 🛡️ Added 'relative' to body to fix the non-static position console warning */}
+      <body className="relative bg-[#F8FAFC] text-slate-900 antialiased selection:bg-blue-100 selection:text-blue-900 overflow-x-hidden">
         
-        {/* ⚡ THE INFINITE TRACER OVERLAY */}
-        {/* Fixed position ensures it frames the entire browser window */}
-        <div className="fixed inset-0 pointer-events-none z-[9999] p-[2px]">
+        {/* ⚡ THE INFINITE TRACER OVERLAY (Refined for Light Theme) */}
+        <div className="fixed inset-0 pointer-events-none z-[9999] p-[1px]">
           <div className="relative w-full h-full">
             <motion.div 
-              className="absolute inset-0 border-[3px] border-transparent"
+              className="absolute inset-0 border-[2px] border-transparent"
               style={{
-                // 🎨 MASK LOGIC: This creates the "20% Length" effect
+                // 🎨 MASK LOGIC: Keeps the path sharp and elegant
                 WebkitMaskImage: `conic-gradient(from 0deg, black 0%, black 10%, transparent 20%, transparent 100%)`,
                 maskImage: `conic-gradient(from 0deg, black 0%, black 10%, transparent 20%, transparent 100%)`,
                 
-                // 🌈 TRACER COLOR: Cyan-to-Blue Neon Glow
-                borderImageSource: `conic-gradient(from 0deg, transparent, #06b6d4, #3b82f6, transparent)`,
+                // 🌈 TRACER COLOR: Shifted to Slate-to-Azure (Premium Executive look)
+                borderImageSource: `conic-gradient(from 0deg, transparent, #94a3b8, #3b82f6, transparent)`,
                 borderImageSlice: 1,
               }}
               animate={{ rotate: 360 }}
               transition={{ 
-                duration: 8, 
+                duration: 12, // Slower rotation for a more sophisticated feel
                 repeat: Infinity, 
                 ease: "linear" 
               }}
@@ -42,15 +42,17 @@ export default function RootLayout({
         {/* 🏛️ UI STRUCTURE */}
         <div className="min-h-screen flex flex-col relative">
           
-          {/* Navbar sits above the tracer visually */}
+          {/* Navbar positioned strictly above all overlays */}
           <header className="relative z-[10000]">
             <Navbar />
           </header>
 
+          {/* Main content layer */}
           <main className="flex-grow relative z-10">
             {children}
           </main>
           
+          {/* Footer layer */}
           <footer className="relative z-10">
             <Footer />
           </footer>
